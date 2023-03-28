@@ -1,11 +1,10 @@
 import Image from 'next/image';
-import { Inter } from 'next/font/google';
 import styles from '@/styles/Home.module.css';
 import Meta from '@/utils/Meta';
 
-const inter = Inter({ subsets: ['latin'] });
+export default function Home({ cards }) {
+  console.log(cards);
 
-export default function Home() {
   return (
     <>
       <Meta title="Home" description="Test description" />
@@ -13,3 +12,21 @@ export default function Home() {
     </>
   );
 }
+
+export async function getStaticProps() {
+  // Fetch data from external API
+  const res = await fetch(`http:localhost:3000/api/cards`);
+  const cards = await res.json();
+
+  // Pass data to the page via props
+  return { props: { cards }, revalidate: 10 };
+}
+
+// export async function getServerSideProps() {
+//   // Fetch data from external API
+//   const res = await fetch(`http:localhost:3000/api/cards`);
+//   const cards = await res.json();
+
+//   // Pass data to the page via props
+//   return { props: { cards } };
+// }
