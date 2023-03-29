@@ -1,14 +1,16 @@
 import Image from 'next/image';
-import styles from '@/styles/Home.module.css';
 import Meta from '@/utils/Meta';
+import CardItem from '@/components/CardItem';
 
 export default function Home({ cards }) {
-  console.log(cards);
-
   return (
     <>
       <Meta title="Home" description="Test description" />
-      <main className={styles.main}>Hello world</main>
+      <main className="w-1/3 mx-auto mt-10">
+        {cards.map((card) => (
+          <CardItem key={card._id} card={card} />
+        ))}
+      </main>
     </>
   );
 }

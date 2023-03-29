@@ -1,7 +1,18 @@
 import React from 'react';
+import CardItem from '@/components/CardItem';
+import Meta from '@/utils/Meta';
+import Link from 'next/link';
 
-const Card = () => {
-  return <div>Card</div>;
+const Card = ({ card }) => {
+  return (
+    <>
+      <Meta title="Card pagr" description="Test description" />
+      <main className="w-1/3 mx-auto mt-10">
+        <CardItem card={card} />
+        <Link href="/">Back to home</Link>
+      </main>
+    </>
+  );
 };
 
 export async function getStaticPaths() {
